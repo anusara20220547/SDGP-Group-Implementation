@@ -20,7 +20,7 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     checkUserExists(name, password);
 });
 
-var contactFormDB = firebase.database().ref("contactForm");
+var contactFormDB = firebase.database().ref("alldata/authentication");
 
 const checkUserExists = (name, password) => {
     contactFormDB.orderByChild("name").equalTo(name).once("value")
