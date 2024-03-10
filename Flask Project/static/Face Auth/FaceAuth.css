@@ -1,0 +1,50 @@
+/* Add these media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .facecam {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .tphoto-button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .namelable {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+}
+
+/* Original styles */
+.faceh1 {
+    margin-top: 100px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.facecam {
+    margin-left: 420px;
+    margin-bottom: 20px;
+}
+
+.tphoto-button {
+    width: 14%;
+    margin-left: 650px;
+    margin-top: 20px;
+    padding: 7px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.namelable {
+    margin-top: 20px;
+    margin-left: 600px;
+    color: #ffffff;
+    font-weight: 400;
+}

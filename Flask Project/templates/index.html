@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Voice of Unity Petition System</title>
+    <link rel="stylesheet" href="../static/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/Face Auth/FaceAuth.css">
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Logo</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <div>
+        <nav class="navbar">
+            <a href="/updateprofile">Home</a>
+            <a href="/index">About</a>
+            <a href="../../../Face Recognition/templates/index.html">Contact</a>
+            <a href="../Login Page/SDGP UI/SDGP.html" class="login-btn">Log In</a>
+            <a href="../Registration Page/reg.html" class="signup-btn">Sign Up</a>
+        </nav>
+        </div>
+    </header>
+    <h1 class="faceh1">Face Recognition</h1>
+    <br>
+    <video class="facecam" id="video" width="640" height="480" autoplay></video>
+    <br>
+    <label for="name" class="namelable">Re Enter Username:</label>
+    <input type="text" id="name" required>
+    <br>
+    <button class="tphoto-button" onclick="capture()">Take a photo</button>
+    <br>
+    <canvas id="canvas" width="640" height="480" style="display: none;"></canvas>
+    <br>
+    <button class="tphoto-button" onclick="register()">Register</button>
+    
+    <br>
+    <br>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
