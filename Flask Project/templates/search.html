@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="../static/Grid/grid.css">
     <link rel="stylesheet" href="../static/footer.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap">
-    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+
 </head>
 <body>
     <header class="header">
@@ -90,8 +89,8 @@
         <hr>
         <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
      </footer> 
-     
-    <script>
+     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
             authDomain: "voc-sdgp.firebaseapp.com",
@@ -111,14 +110,27 @@
         // Reference to the 'petitions' node
         const petitionsRef = database.ref('alldata/petitions');
 
-        const column1 = document.getElementById('column1');
-        const column2 = document.getElementById('column2');
-        let isColumn1 = true;
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the user's search input from local storage
+            const userSearch = localStorage.getItem('userSearch');
 
-        petitionsRef.once('value')
-            .then(snapshot => {
-                // Iterate through each petition
-                snapshot.forEach(petition => {
+            // If userSearch exists, perform the search
+            if (userSearch) {
+                // Query the database for petitions matching the user's search
+                petitionsRef.orderByChild('main_title')
+                    .startAt(userSearch)
+                    .endAt(userSearch + '\uf8ff')
+                    .once('value')
+                    .then(snapshot => {
+                        // Clear the existing columns
+                        const column1 = document.getElementById('column1');
+                        const column2 = document.getElementById('column2');
+                        column1.innerHTML = '';
+                        column2.innerHTML = '';
+
+                        let isColumn1 = true;
+
+                        snapshot.forEach(petition => {
                     const petitionData = petition.val();
 
                     // Create a div element for each petition with the "petition-box" class
@@ -147,18 +159,19 @@
                     const signsElement = document.createElement('h5');
                     signsElement.textContent = 'Signs: ' + petitionData.signs;
                     const signButton = document.createElement('button');
-                    signButton.textContent = 'Sign';
-                    signButton.addEventListener('click', () => {
-            
-                        alert('You signed the petition: ' + petitionData.main_title);
-                        const updatedSigns = petitionData.signs + 1;
-                        petitionsRef.child(petition.key).update({ signs: updatedSigns });
-                    });
+            signButton.textContent = 'Sign';
+            signButton.addEventListener('click', () => {
+                // Add your sign logic here
+                alert('You signed the petition: ' + petitionData.main_title);
 
-                    const usernameElement = document.createElement('p');
+                // Increment sign count in the database
+                const updatedSigns = petitionData.signs + 1;
+                petitionsRef.child(petition.key).update({ signs: updatedSigns });
+            });
+
+            const usernameElement = document.createElement('p');
                     usernameElement.id = 'usernameElement';
                     usernameElement.textContent = 'Created by: ' + petitionData.username;
-
 
 
                 // Append elements to the petitionBox
@@ -172,17 +185,20 @@
                 petitionBox.appendChild(usernameElement);
 
 
-                    // Determine which column to append the petitionBox to
-                    const targetColumn = isColumn1 ? column1 : column2;
-                    targetColumn.appendChild(petitionBox);
+                            // Determine which column to append the petitionBox to
+                            const targetColumn = isColumn1 ? column1 : column2;
+                            targetColumn.appendChild(petitionBox);
 
-                    // Toggle between columns
-                    isColumn1 = !isColumn1;
-                });
-            })
-            .catch(error => {
-                console.error('Error retrieving data:', error);
-            });
+                            // Toggle between columns
+                            isColumn1 = !isColumn1;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error searching for petitions:', error);
+                    });
+            }
+        });
     </script>
-</body>
-</html>
+    </body>
+    </html>
+

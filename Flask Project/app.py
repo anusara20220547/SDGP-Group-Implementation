@@ -21,6 +21,10 @@ def userhome():
 def loginp():
     return render_template('Loginpage.html')
 
+@app.route('/cpetition')
+def cpetition():
+    return render_template('createPetition.html')
+
 @app.route('/updateprofile')
 def updateprfile():
     return render_template('UpdateProfile.html')
@@ -32,6 +36,10 @@ def index():
 @app.route('/Grid')
 def Grid():
     return render_template('Grid.html')
+
+@app.route('/search')
+def search():
+    return render_template('search.html')    
 
 @app.route('/recog')
 def recog():
@@ -56,7 +64,7 @@ def register():
     registered_data[name] = f'{datetime.date.today()}_{name}.jpg'
 
     response = {'success': True, 'name': name}
-    return jsonify(response)
+    return jsonify(response) 
 
 @app.route('/login', methods=['POST'])
 def login():

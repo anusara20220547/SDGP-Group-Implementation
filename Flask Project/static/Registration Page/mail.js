@@ -15,7 +15,7 @@ window.onload = function () {
   // Check if the connection to the database is successful
   try {
     firebase.database();
-    alert("Firebase database connection successful!");
+    
   } catch (error) {
     alert("Error connecting to Firebase database: " + error.message);
     console.error("Error connecting to Firebase database:", error);
@@ -44,7 +44,7 @@ window.onload = function () {
     contactFormDB.orderByChild("gmail").equalTo(gmail).once("value", snapshotEmail => {
       if (snapshotEmail.exists()) {
         alert("You are already registered to the system. Please use sign in!");
-        window.location.href = "../Login Page/SDGP UI/SDGP.html";
+        window.location.href = "/loginp";
       } else {
         contactFormDB.orderByChild("name").equalTo(name).once("value", snapshotName => {
           if (snapshotName.exists()) {

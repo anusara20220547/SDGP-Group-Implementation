@@ -57,12 +57,13 @@ header:hover::before {
   text-decoration: none;
   font-weight: 600;
   cursor: default;
-  
 }
 
 .navbar {
   display: flex;
 }
+
+
 
 .navbar a {
   color: #fff;
@@ -70,10 +71,6 @@ header:hover::before {
   text-decoration: none;
   margin-left: 35px;
   transition: 0.3s;
-}
-
-.logoc{
-  font-size: 4px;
 }
 
 .navbar a:hover {
