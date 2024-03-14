@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap">
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 </head>
 <body>
     <header class="header">
@@ -48,6 +49,7 @@
     
 
     <footer>
+        <div id="myid">Choose Language</div>
         <div class="row">
             <div class="col">
                 <img src="../static/images/logo (2).png" class="footer_logo">
@@ -90,7 +92,17 @@
         <hr>
         <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
      </footer> 
-     
+     <script>
+
+        function loadGoogleTranslate()
+    
+        {
+    
+            new google.translate.TranslateElement("myid")
+    
+        }
+    
+    </script>
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
