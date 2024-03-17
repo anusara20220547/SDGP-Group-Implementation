@@ -15,20 +15,20 @@ window.onload = function () {
   // Check if the connection to the database is successful
   try {
     firebase.database();
-    alert("Firebase database connection successful!");
+    
   } catch (error) {
     alert("Error connecting to Firebase database: " + error.message);
     console.error("Error connecting to Firebase database:", error);
   }
 
   // Form submission function for petitions
-  document.getElementById("authentication").addEventListener("submit", function (event) {
+  document.querySelector(".sign-up-form").addEventListener("submit", function (event) {
     event.preventDefault();
 
     // Get values from the form
     const name = document.getElementById("name").value;
-    const password = document.getElementById("password").value;
-    const gmail = document.getElementById("gmail").value;
+    const password = document.getElementById("password1").value;
+    const gmail = document.getElementById("gmail1").value;
 
     // Check if the Gmail field includes "@"
     if (gmail.includes("@")) {
@@ -44,7 +44,7 @@ window.onload = function () {
     contactFormDB.orderByChild("gmail").equalTo(gmail).once("value", snapshotEmail => {
       if (snapshotEmail.exists()) {
         alert("You are already registered to the system. Please use sign in!");
-        window.location.href = "../Login Page/SDGP UI/SDGP.html";
+        window.location.href = "/loginp";
       } else {
         contactFormDB.orderByChild("name").equalTo(name).once("value", snapshotName => {
           if (snapshotName.exists()) {
@@ -83,7 +83,6 @@ window.onload = function () {
           window.location.href = "/index"; // Navigate to the home page
           document.getElementById("authentication").reset();
         }).catch((error) => {
-          alert("Error uploading authentication data: " + error.message);
           console.error("Error uploading authentication data:", error);
         });
       })

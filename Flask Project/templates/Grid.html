@@ -1,127 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="../static/NavigationCSS.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #08071d;
-        }
-
-        .blog-header {
-            position: relative;
-            overflow: hidden;
-            height: 540px;
-            margin-left: 20px;
-            margin-right: 20px;
-        }
-
-        .blog-header img {
-            width: 100%;
-            height: 100%;
-            margin-top: 100px;
-            margin-bottom: 0;
-            object-fit: cover;
-            border-bottom: 20px solid #08071d; /* Border at the bottom */
-            border-radius: 5px;
-        }
-
-        .blog-header-text {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px;
-            background: rgba(8, 7, 29, 0.7); /* Semi-transparent background for text */
-            color: white;
-            text-align: center;
-        }
-
-        .card {
-            height: 450px;
-            position: relative; 
-            background-color: rgb(223, 228, 233);
-            margin-bottom: 40px;
-            margin-right: 40px;
-        }
-
-        .card img {
-            object-fit: cover;
-            margin-left: 20px;
-            margin-top: 20px;
-            margin-right: 20px;
-            height: 170px;
-            width: 335px;
-            border-radius: 5px;
-        }
-
-        .card-body {
-            word-wrap: break-word;
-            overflow: hidden;
-        }
-
-        .see-more {
-            color: #007bff;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        h1
-        {
-            color: white;
-        }
-
-        h5 {
-            text-align: center;
-            color: rgb(67, 67, 109);
-            font-weight: bolder;
-        }
-        
-        h6 {
-            color: rgb(39, 39, 165);
-            text-align: center;
-            font-weight: bolder;
-        }
-
-        p {
-            margin-left: 15px;
-            margin-right: 15px;
-            font-size: 12px;
-            text-align: center;
-        }
-
-        .sign-button {
-            position: absolute;
-            bottom: 30px;
-            left: 30px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Voice of Unity Online Petition System</title>
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="../static/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/Grid/grid.css">
+    <link rel="stylesheet" href="../static/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap">
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 </head>
-
 <body>
     <header class="header">
-        <a href="" class="logo">Logo</a>
+        <a href="../static/images/bloghead.jpg" class="logo">
+            VOICE OF UNITY 
         <i class='bx bx-menu' id="menu-icon"></i>
         <div>
-            <nav class="navbar">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
-                <a href="../Login Page/SDGP UI/SDGP.html" class="login-btn">Log In</a>
-                <a href="../Registration Page/reg.html" class="signup-btn">Sign Up</a>
-            </nav>
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/index">About</a>
+            <a href="/recog">Contact</a>
+            <a href="/updateprofile" class="login-btn">Account</a>
+
+        </nav>
         </div>
     </header>
 
@@ -133,70 +40,161 @@
         </div>
     </div>
 
-    <body>
-        <div class="container py-5">
-            <div class="row row-cols-1 row-cols-md-3 g-4 py-5" id="dishes-container">
-                <!-- Your petition cards will be dynamically added here -->
+    
+    <div id="columnContainer" class="column-container">
+        <br><br><br>
+        <div id="column1" class="responsive-column"></div>
+        <div id="column2" class="responsive-column"></div>
+    </div>
+    
+
+    <footer>
+        <div id="myid">Choose Language</div>
+        <div class="row">
+            <div class="col">
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.
+
+                </p>
+            </div>
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p>2841 Romines Mill Road</p>
+                <p>Plano</p>
+                <p>Texas, ZIP 75074, United States</p>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">LOGIN</a></li>
+                    <li><a href="">REGISTER</a></li>
+                    <li><a href="">SUPPORT</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Newsletter <div class="bottom_line"><span></span></div></h3>
+                <form>
+                    <ion-icon class="icon" name="mail"></ion-icon>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><ion-icon class="icon_right" name="arrow-round-forward"></ion-icon></button>
+                </form>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
             </div>
         </div>
-    
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Retrieve the 'results' query parameter
-                const urlParams = new URLSearchParams(window.location.search);
-                const resultsParam = urlParams.get('results');
-        
-                // Check if the 'results' parameter exists
-                if (resultsParam) {
-                    // Parse the JSON string into an array
-                    const resultsArray = JSON.parse(decodeURIComponent(resultsParam));
-        
-                    // Reference the container where you want to append the petition cards
-                    const dishesContainer = document.getElementById('dishes-container');
-        
-                    // Iterate over the search results and create a card for each petition
-                    resultsArray.forEach((petition) => {
-                        const card = document.createElement('div');
-                        card.classList.add('col');
-        
-                        // Truncate the description if it exceeds 30 words
-                        const truncatedDescription = truncateDescription(petition.description, 30);
-        
-        
-                        card.innerHTML = `
-                    <div class="card">
-                        <img src="${petition.imageURL}" alt="${petition.main_title}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">${petition.main_title}</h5>
-                            <h6 class="card-subtitle">${petition.Sub_title}</h6>
-                            <p class="card-text">
-                                <span class="truncated">${truncatedDescription}</span>
-                                <span class="full" style="display: none;">${petition.description}</span>
-                            </p>
-                            ${petition.description.length > 30 ? `<p class="text-center see-more" onclick="toggleDescription(this)" style="font-size: 12px; cursor: pointer;">See More</p>` : ''}
-                        </div>
-                    </div>
-                `;
-        
-                        // Append the card to the container
-                        dishesContainer.appendChild(card);
-                    });
-                } else {
-                    console.log('No search results found.');
-                }
-            });
-        
-            // Function to truncate the description to a specified word limit
-            function truncateDescription(description, limit) {
-                const words = description.split(' ');
-                if (words.length > limit) {
-                    return words.slice(0, limit).join(' ') + '...';
-                } else {
-                    return description;
-                }
-            }
-        </script>
-        
-</body>
+        <hr>
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+     </footer> 
+     <script>
 
+        function loadGoogleTranslate()
+    
+        {
+    
+            new google.translate.TranslateElement("myid")
+    
+        }
+    
+    </script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
+            authDomain: "voc-sdgp.firebaseapp.com",
+            databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
+            projectId: "voc-sdgp",
+            storageBucket: "voc-sdgp.appspot.com",
+            messagingSenderId: "158804183426",
+            appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Reference to your database
+        const database = firebase.database();
+
+        // Reference to the 'petitions' node
+        const petitionsRef = database.ref('alldata/petitions');
+
+        const column1 = document.getElementById('column1');
+        const column2 = document.getElementById('column2');
+        let isColumn1 = true;
+
+        petitionsRef.once('value')
+            .then(snapshot => {
+                // Iterate through each petition
+                snapshot.forEach(petition => {
+                    const petitionData = petition.val();
+
+                    // Create a div element for each petition with the "petition-box" class
+                    const petitionBox = document.createElement('div');
+                    petitionBox.classList.add('petition-box');
+
+                    // Create image element with the "petition-image" class
+                    const imageElement = document.createElement('img');
+                    imageElement.src = petitionData.imageURL;
+                    imageElement.alt = petitionData.main_title;
+                    imageElement.classList.add('petition-image');
+
+                    // Create details elements (you can customize this part based on your requirements)
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = petitionData.main_title;
+
+                    const subTitleElement = document.createElement('h3');
+                    subTitleElement.textContent = petitionData.Sub_title;
+
+                    const categoryElement = document.createElement('p');
+                    categoryElement.textContent = 'Category: ' + petitionData.category;
+
+                    const descriptionElement = document.createElement('p');
+                    descriptionElement.textContent = petitionData.description;
+
+                    const signsElement = document.createElement('h5');
+                    signsElement.textContent = 'Signs: ' + petitionData.signs;
+                    const signButton = document.createElement('button');
+                    signButton.textContent = 'Sign';
+                    signButton.addEventListener('click', () => {
+            
+                        alert('You signed the petition: ' + petitionData.main_title);
+                        const updatedSigns = petitionData.signs + 1;
+                        petitionsRef.child(petition.key).update({ signs: updatedSigns });
+                    });
+
+                    const usernameElement = document.createElement('p');
+                    usernameElement.id = 'usernameElement';
+                    usernameElement.textContent = 'Created by: ' + petitionData.username;
+
+
+
+                // Append elements to the petitionBox
+                petitionBox.appendChild(imageElement);
+                petitionBox.appendChild(titleElement);
+                petitionBox.appendChild(subTitleElement);
+                petitionBox.appendChild(categoryElement);
+                petitionBox.appendChild(descriptionElement);
+                petitionBox.appendChild(signsElement);
+                petitionBox.appendChild(signButton);
+                petitionBox.appendChild(usernameElement);
+
+
+                    // Determine which column to append the petitionBox to
+                    const targetColumn = isColumn1 ? column1 : column2;
+                    targetColumn.appendChild(petitionBox);
+
+                    // Toggle between columns
+                    isColumn1 = !isColumn1;
+                });
+            })
+            .catch(error => {
+                console.error('Error retrieving data:', error);
+            });
+    </script>
+</body>
 </html>

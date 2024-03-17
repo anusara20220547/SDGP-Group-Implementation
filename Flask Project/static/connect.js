@@ -15,45 +15,25 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 document.addEventListener('DOMContentLoaded', function () {
-
     window.searchPetition = function () {
-        var searchTerm = document.getElementById("search-input").value.trim().toLowerCase();
-        console.log('Search Term: ' + searchTerm);
+        // Get the search input value
+        var searchInput = document.getElementById('search-input').value;
 
-        var petitionsRef = ref(database, 'alldata/petitions');
+        // Check if the search input is not empty
+        if (searchInput.trim() !== '') {
+            // Set the search input value in local storage
+            localStorage.setItem('userSearch', searchInput);
 
-        get(petitionsRef).then((snapshot) => {
-            console.log('Firebase data retrieved successfully.');
-
-            if (snapshot.exists()) {
-                var filteredResults = [];
-
-                snapshot.forEach((childSnapshot) => {
-                    var petitionData = childSnapshot.val();
-
-                    if ((petitionData.main_title && petitionData.main_title.toLowerCase().includes(searchTerm)) ||
-                        (petitionData.Sub_title && petitionData.Sub_title.toLowerCase().includes(searchTerm)) ||
-                        (petitionData.category && petitionData.category.toLowerCase().includes(searchTerm)) ||
-                        (petitionData.description && petitionData.description.toLowerCase().includes(searchTerm))) {
-                        filteredResults.push(petitionData);
-                    }
-                });
-
-                // Display searched results in the console
-                console.log('Searched Results:', filteredResults);
-
-                // Redirect to grid.html with filtered results as a query parameter
-                if (filteredResults.length > 0) {
-                    var filteredResultsString = encodeURIComponent(JSON.stringify(filteredResults));
-                    window.location.href = '/Grid?results=' + filteredResultsString;
-                } else {
-                    console.log('No matching petitions found.');
-                }
-            } else {
-                console.log('No petitions found.');
-            }
-        }).catch((error) => {
-            console.error('Error retrieving data from Firebase:', error);
-        });
+            // Navigate to the "/search" page
+            window.location.href = '/search';
+        }
     }
+
+    const signPetitionButton = document.getElementById('signPetitionButton');
+
+        // Add a click event listener to the button
+        signPetitionButton.addEventListener('click', function () {
+            // Replace 'newPage.html' with the actual URL of the page you want to navigate to
+            window.location.href = '/Grid';
+        });
 });
