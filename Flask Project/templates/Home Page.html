@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice of Unity Petition System</title>
+    <link rel="stylesheet" href="../static/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/HomeCSS.css">
+    <link rel="stylesheet" href="../static/footer.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <header class="header">
+        <a href="#" class="logo">Logo</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <div>
+        <nav class="navbar">
+            <a href="/cpetition">Home</a>
+            <a href="/login">About</a>
+            <a href="/recog">Contact</a>
+            <a href="/loginp" class="login-btn">Log In</a>
+            <a href="/registerform" class="signup-btn">Sign Up</a>
+
+        </nav>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="box box1">
+            <div class="box-content">
+                <h1>Sign For Change : Your Voice Matters</h1>
+                <h3>Unleash Your Voice For Change! Voice Of Unity 
+                    Online Petition System Lets You Create And Sign
+                    Petitions Effortlessly. Join The Movement, Make
+                    A Difference. Start Or Sign A Petition Now.
+                </h3>
+                <div class="search-panel">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search Petition...">
+                    <button class="search-button" onclick="searchPetition()">Search</button>
+                </div>
+                <div class="sign-panel">
+                    <button class="sign-button">Create Petition</button>
+                </div>
+                <div class="sign-panel">
+                    <button id="signPetitionButton" class="sign-button">Sign Petition</button>
+                </div>
+            </div>
+            <img src="../static/images/divider.png" alt="Image description" class="box-image">
+        </div>
+    </div>
+
+    <div class="search-panel">
+        <input type="hidden" id="search-input" class="search-input" placeholder="Search Petition...">
+        
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.
+
+                </p>
+            </div>
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p>2841 Romines Mill Road</p>
+                <p>Plano</p>
+                <p>Texas, ZIP 75074, United States</p>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">LOGIN</a></li>
+                    <li><a href="">REGISTER</a></li>
+                    <li><a href="">SUPPORT</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Newsletter <div class="bottom_line"><span></span></div></h3>
+                <form>
+                    <ion-icon class="icon" name="mail"></ion-icon>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><ion-icon class="icon_right" name="arrow-round-forward"></ion-icon></button>
+                </form>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+     </footer> 
+     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  
+    <script src="HomeJS.js"></script>
+    <script type="module"  src="../static/connect.js"></script>
+</body>
+</html>
+
