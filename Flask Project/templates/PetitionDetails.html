@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title and external resources -->
+    <title>Voice Of Unity</title>
+    <link rel="stylesheet" href="../static/NavigationCSS.css"> <!-- Stylesheet for navigation bar -->
+    <link rel="stylesheet" href="../static/footer.css"> <!-- Stylesheet for footer -->
+    <link rel="stylesheet" href="../static/ViewMore/viewmore.css"> <!-- Stylesheet for view more page -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"> <!-- Google Fonts -->
+</head>
+<body>
+    <!-- Header section -->
+    <header class="header">
+        <!-- Logo and navigation -->
+        <a href="../static/images/bloghead.jpg" class="logo">
+            V.O.U 
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </a>
+        <div>
+            <nav class="navbar">
+                <a href="/userhome">Home</a>
+                <a href="/aboutu">About</a>
+                <a href="/helpuser">Support</a>
+                <a href="/updateprofile">Profile</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Title for petition details -->
+    <h1 id="alldetailsh1">Petition Details</h1>
+    <!-- Container for petition details -->
+    <div id="petition-details" class="details-box"></div>
+    <!-- Footer section -->
+    <footer>
+        <!-- Footer content -->
+        <div class="row">
+            <!-- Logo and about section -->
+            <div class="col">
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
+            </div>
+            <!-- Contact section -->
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <!-- Links section -->
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="/userhome">HOME</a></li>
+                    <li><a href="/aboutu">About</a></li>
+                    <li><a href="/helpuser">SUPPORT</a></li>
+                </ul>
+            </div>
+            <!-- Social icons section -->
+            <div class="col">
+                <div id="myid"></div>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Copyright -->
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+     </footer>  
+     <!-- Google Translate script -->
+     <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("myid");
+        }
+    </script>
+
+     <!-- JS files for backend operations -->
+     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+     <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+
+    <script src="../static/ViewMore/viewmore.js">
+</script>
+</body>
+</html>
+
