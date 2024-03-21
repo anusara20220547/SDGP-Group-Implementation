@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice of Unity Online Petition System</title>
+    <!-- Include Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.2/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="../static/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/Grid/grid.css">
+    <link rel="stylesheet" href="../static/footer.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap">
+
+</head>
+<body>
+    <header class="header">
+        <a href="../static/images/bloghead.jpg" class="logo">
+            VOICE OF UNITY 
+        <i class='bx bx-menu' id="menu-icon"></i>
+        <div>
+        <nav class="navbar">
+            <a href="/">Home</a>
+            <a href="/index">About</a>
+            <a href="/recog">Contact</a>
+            <a href="/updateprofile" class="login-btn">Account</a>
+
+        </nav>
+        </div>
+    </header>
+
+    <div class="blog-header">
+        <img src="../static/images/SearchBlogHeader.jpg" alt="Blog Header Image" class="blog-header-image">
+        <div class="blog-header-text">
+            <h2>Trending Petitions</h2>
+            <h8>Discover exciting stories and updates and vote.</h8>
+        </div>
+    </div>
+
+    
+    <div id="columnContainer" class="column-container">
+        <br><br><br>
+        <div id="column1" class="responsive-column"></div>
+        <div id="column2" class="responsive-column"></div>
+    </div>
+    
+
+    <footer>
+        <div class="row">
+            <div class="col">
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.
+
+                </p>
+            </div>
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p>2841 Romines Mill Road</p>
+                <p>Plano</p>
+                <p>Texas, ZIP 75074, United States</p>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">LOGIN</a></li>
+                    <li><a href="">REGISTER</a></li>
+                    <li><a href="">SUPPORT</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h3>Newsletter <div class="bottom_line"><span></span></div></h3>
+                <form>
+                    <ion-icon class="icon" name="mail"></ion-icon>
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit"><ion-icon class="icon_right" name="arrow-round-forward"></ion-icon></button>
+                </form>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+     </footer> 
+     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+     <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
+            authDomain: "voc-sdgp.firebaseapp.com",
+            databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
+            projectId: "voc-sdgp",
+            storageBucket: "voc-sdgp.appspot.com",
+            messagingSenderId: "158804183426",
+            appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Reference to your database
+        const database = firebase.database();
+
+        // Reference to the 'petitions' node
+        const petitionsRef = database.ref('alldata/petitions');
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the user's search input from local storage
+            const userSearch = localStorage.getItem('userSearch');
+
+            // If userSearch exists, perform the search
+            if (userSearch) {
+                // Query the database for petitions matching the user's search
+                petitionsRef.orderByChild('main_title')
+                    .startAt(userSearch)
+                    .endAt(userSearch + '\uf8ff')
+                    .once('value')
+                    .then(snapshot => {
+                        // Clear the existing columns
+                        const column1 = document.getElementById('column1');
+                        const column2 = document.getElementById('column2');
+                        column1.innerHTML = '';
+                        column2.innerHTML = '';
+
+                        let isColumn1 = true;
+
+                        snapshot.forEach(petition => {
+                    const petitionData = petition.val();
+
+                    // Create a div element for each petition with the "petition-box" class
+                    const petitionBox = document.createElement('div');
+                    petitionBox.classList.add('petition-box');
+
+                    // Create image element with the "petition-image" class
+                    const imageElement = document.createElement('img');
+                    imageElement.src = petitionData.imageURL;
+                    imageElement.alt = petitionData.main_title;
+                    imageElement.classList.add('petition-image');
+
+                    // Create details elements (you can customize this part based on your requirements)
+                    const titleElement = document.createElement('h2');
+                    titleElement.textContent = petitionData.main_title;
+
+                    const subTitleElement = document.createElement('h3');
+                    subTitleElement.textContent = petitionData.Sub_title;
+
+                    const categoryElement = document.createElement('p');
+                    categoryElement.textContent = 'Category: ' + petitionData.category;
+
+                    const descriptionElement = document.createElement('p');
+                    descriptionElement.textContent = petitionData.description;
+
+                    const signsElement = document.createElement('h5');
+                    signsElement.textContent = 'Signs: ' + petitionData.signs;
+                    const signButton = document.createElement('button');
+            signButton.textContent = 'Sign';
+            signButton.addEventListener('click', () => {
+                // Add your sign logic here
+                alert('You signed the petition: ' + petitionData.main_title);
+
+                // Increment sign count in the database
+                const updatedSigns = petitionData.signs + 1;
+                petitionsRef.child(petition.key).update({ signs: updatedSigns });
+            });
+
+            const usernameElement = document.createElement('p');
+                    usernameElement.id = 'usernameElement';
+                    usernameElement.textContent = 'Created by: ' + petitionData.username;
+
+
+                // Append elements to the petitionBox
+                petitionBox.appendChild(imageElement);
+                petitionBox.appendChild(titleElement);
+                petitionBox.appendChild(subTitleElement);
+                petitionBox.appendChild(categoryElement);
+                petitionBox.appendChild(descriptionElement);
+                petitionBox.appendChild(signsElement);
+                petitionBox.appendChild(signButton);
+                petitionBox.appendChild(usernameElement);
+
+
+                            // Determine which column to append the petitionBox to
+                            const targetColumn = isColumn1 ? column1 : column2;
+                            targetColumn.appendChild(petitionBox);
+
+                            // Toggle between columns
+                            isColumn1 = !isColumn1;
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Error searching for petitions:', error);
+                    });
+            }
+        });
+    </script>
+    </body>
+    </html>
+
