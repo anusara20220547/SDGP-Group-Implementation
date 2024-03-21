@@ -1,6 +1,7 @@
 const chatBox = document.getElementById('chat-box');
         const userInput = document.getElementById('user-input');
 
+        //Function to get user messages
         function sendMessage() {
             const userMessage = userInput.value;
             if (userMessage.trim() === '') return;
@@ -20,7 +21,7 @@ const chatBox = document.getElementById('chat-box');
             messageElement.classList.add('message');
             messageElement.classList.add(messageClass); // Add user-message or bot-message class
             
-            messageElement.innerHTML = <div class="${messageClass}"><strong>${sender}</strong>: ${message}</div>;
+            messageElement.innerHTML = `<div class="${messageClass}"><strong>${sender}</strong>: ${message}</div>`;
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight; 
         }
@@ -91,3 +92,8 @@ function generateBotResponse(userMessage) {
     // If no predefined response matches, return a default response
     return responses["default"];
 }
+
+
+
+
+
