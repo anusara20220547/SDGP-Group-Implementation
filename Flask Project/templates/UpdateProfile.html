@@ -1,242 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voice of Unity Petition System</title>
-    <link rel="stylesheet" href="../static/NavigationCSS.css">
-    <link rel="stylesheet" href="../static/Face Auth/UpdateProfile/usersetting.css">
+    <!-- Title and external resources -->
+    <title>Voice of Unity</title>
+    <link rel="stylesheet" href="../static/NavigationCSS.css"> <!-- Stylesheet for navigation bar -->
+    <link rel="stylesheet" href="../static/footer.css"> <!-- Stylesheet for footer -->
+    <link rel="stylesheet" href="../static/Face Auth/UpdateProfile/usersetting.css"> <!-- Stylesheet for user settings -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script> <!-- Ionicons ES module -->
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script> <!-- Ionicons script for older browsers -->
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> <!-- Google Translate script -->
+    <script src="../static/Navbar.js"></script> <!-- Script for navbar functionality -->
 </head>
 <body>
+    <!-- Header section -->
     <header class="header">
-        <a href="#" class="logo">Logo</a>
-        <i class='bx bx-menu' id="menu-icon"></i>
+        <!-- Logo and navigation -->
+        <a href="../static/images/bloghead.jpg" class="logo">
+            V.O.U 
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </a>
         <div>
-        <nav class="navbar">
-            <a href="#">Home</a>
-            <a href="/index">About</a>
-            <a href="/recog">Contact</a>
-            <a href="../Login Page/SDGP UI/SDGP.html" class="login-btn">Log In</a>
-            <a href="/registerform" class="signup-btn">Sign Up</a>
-
-        </nav>
+            <nav class="navbar">
+                <a href="/userhome">Home</a>
+                <a href="/aboutu">About</a>
+                <a href="/helpuser">Support</a>
+                <a href="/updateprofile">Profile</a>
+            </nav>
         </div>
     </header>
+    <!-- User profile settings -->
     <div class="box box1">
-    <div class="box-content">
-    <h1>User Profile</h1>
+        <div class="box-content">
+            <h1>User Profile</h1>
+            <!-- Display user information -->
+            <div>
+                <h2>User Information</h2>
+                <p>Username: <span id="usernameDisplay"></span></p>
+                <p>Gmail: <span id="gmailDisplay"></span></p>
+                <img src="" alt="Profile Picture" id="profilePictureDisplay">
+            </div>
+            <!-- Update user information -->
+            <div>
+                <br>
+                <h2>Update User Information</h2>
+                <label for="newUsername">New Username:</label>
+                <input type="text" id="newUsername" required>
+                <button onclick="validateAndUpdateUsername()">Update Username</button>
 
-    <div>
-        <h2>User Information</h2>
-        <p>Username: <span id="usernameDisplay"></span></p>
-        <p>Gmail: <span id="gmailDisplay"></span></p>
-        <img src="" alt="Profile Picture" id="profilePictureDisplay">
-    </div>
+                <label for="newPassword">New Password:</label>
+                <input type="password" id="newPassword" required>
+                <button onclick="updatePassword()">Update Password</button>
+                <br><br>
 
-    <script>
-        // Retrieve user information from local storage
-        const storedUsername = localStorage.getItem('userName');
-        const storedGmail = localStorage.getItem('userGmail');
+                <input type="file" id="profilePictureInput" accept="image/*">
+                <button onclick="validateAndUpdateProfilePicture()">Update Profile Picture</button>
+                <br><br>
 
-        // Display user information on the page
-        document.getElementById('usernameDisplay').textContent = storedUsername;
-        document.getElementById('gmailDisplay').textContent = storedGmail;
-    </script>
-
-    <div>
-        <br>
-        <h2>Update User Information</h2>
-        <label for="newUsername">New Username:</label>
-        <input type="text" id="newUsername" required>
-        <button onclick="validateAndUpdateUsername()">Update Username</button>
-
-        <label for="newPassword">New Password:</label>
-        <input type="password" id="newPassword" required>
-        <button onclick="updatePassword()">Update Password</button>
-        <br><br>
-
-        <input type="file" id="profilePictureInput" accept="image/*">
-        <button onclick="validateAndUpdateProfilePicture()">Update Profile Picture</button>
-        <br><br>
-
-        <button onclick="logout()">Logout</button>
+                <button onclick="logout()">Logout</button>
+            </div>
         </div>
     </div>
-    </div>
+    <!-- Footer section -->
+    <footer>
+        <!-- Footer content -->
+        <div class="row">
+            <!-- Logo and about section -->
+            <div class="col">
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
+            </div>
+            <!-- Contact section -->
+            <div class="col">
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <!-- Links section -->
+            <div class="col">
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="/userhome">HOME</a></li>
+                    <li><a href="/aboutu">About</a></li>
+                    <li><a href="/helpuser">SUPPORT</a></li>
+                </ul>
+            </div>
+            <!-- Social icons section -->
+            <div class="col">
+                <div id="myid"></div>
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- Copyright -->
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+    </footer> 
+    <!-- Google Translate script -->
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("myid")
+        }
+    </script>
 
-    <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-app-compat.js"></script>
+<!-- Firebase SDK scripts -->
+<script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-database-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.3.0/firebase-storage-compat.js"></script>
 
-    <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
-            authDomain: "voc-sdgp.firebaseapp.com",
-            databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
-            projectId: "voc-sdgp",
-            storageBucket: "voc-sdgp.appspot.com",
-            messagingSenderId: "158804183426",
-            appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
-        };
-
-        firebase.initializeApp(firebaseConfig);
-
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                // User is signed in
-                // Display user information on the page
-                document.getElementById('gmailDisplay').innerText = user.email || 'N/A';
-
-                // Load profile picture if available
-                loadProfilePicture(user.uid);
-
-                // Fetch additional user details from the database
-                const userRef = firebase.database().ref('alldata/authentication/' + user.uid);
-                userRef.once('value')
-                    .then(snapshot => {
-                        const userData = snapshot.val();
-                        if (userData && userData.name) {
-                            // Update the displayed username on the page
-                            document.getElementById('usernameDisplay').innerText = userData.name;
-                        } else {
-                            console.warn('Username not found in the database.');
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error fetching user details:', error.message);
-                    });
-            } else {
-                // User is signed out, you might want to redirect to the login page
-                window.location.href = "/login.html";
-            }
-        });
-        function updateUsername() {
-            const newUsername = document.getElementById('newUsername').value;
-
-            // Update the username in the Firebase Realtime Database
-            const userRef = firebase.database().ref('alldata/authentication/' + firebase.auth().currentUser.uid);
-            userRef.update({ name: newUsername })
-                .then(() => {
-                    // Update the displayed username on the page
-                    document.getElementById('usernameDisplay').innerText = newUsername;
-                    alert("Username updated successfully!");
-                })
-                .catch((error) => {
-                    console.error("Error updating username:", error.message);
-                    alert("Error updating username: " + error.message);
-                });
-        }
-
-        function validateAndUpdateUsername() {
-        const newUsername = document.getElementById('newUsername').value;
-
-        // Check if the new username is not empty
-        if (newUsername.trim() !== '') {
-            // If the new username is not empty, proceed to update the username
-            updateUsername();
-        } else {
-            // If the new username is empty, display an alert or take appropriate action
-            alert("Please enter a valid username before updating.");
-        }
-    }
-
-        // Function to update the password
-function updatePassword() {
-    const newPassword = document.getElementById('newPassword').value;
-    const user = firebase.auth().currentUser;
-
-    // Prompt the user to reauthenticate by entering their password
-    const promptUserForPassword = () => {
-        const password = prompt("To perform this action, please enter your password:");
-
-        // Use the entered password to reauthenticate the user
-        const credentials = firebase.auth.EmailAuthProvider.credential(user.email, password);
-
-        return user.reauthenticateWithCredential(credentials);
-    };
-
-    // Reauthenticate user before updating the password
-    promptUserForPassword()
-        .then(() => {
-            // If reauthentication is successful, update the password
-            return user.updatePassword(newPassword);
-        })
-        .then(() => {
-            alert("Password updated successfully!");
-        })
-        .catch((error) => {
-            console.error("Error updating password:", error.message);
-            alert("Error updating password: " + error.message);
-        });
-}
-
-function validateAndUpdateProfilePicture() {
-        const profilePictureInput = document.getElementById('profilePictureInput');
-        const profilePictureFile = profilePictureInput.files[0];
-
-        // Check if a file has been selected
-        if (profilePictureFile) {
-            // If a file is selected, proceed to update the profile picture
-            updateProfilePicture();
-        } else {
-            // If no file is selected, display an alert or take appropriate action
-            alert("Please select an image before updating the profile picture.");
-        }
-    }
-
-        // Function to update the profile picture
-        function updateProfilePicture() {
-            const profilePictureInput = document.getElementById('profilePictureInput');
-            const profilePictureFile = profilePictureInput.files[0];
-
-            // Update the profile picture in Firebase Storage
-            const storageRef = firebase.storage().ref('profilePictures/' + firebase.auth().currentUser.uid);
-            storageRef.put(profilePictureFile)
-                .then((snapshot) => {
-                    // Get the download URL of the uploaded file
-                    return snapshot.ref.getDownloadURL();
-                })
-                .then((downloadURL) => {
-                    // Update the displayed profile picture on the page
-                    document.getElementById('profilePictureDisplay').src = downloadURL;
-                    alert("Profile picture updated successfully!");
-                })
-                .catch((error) => {
-                    console.error("Error updating profile picture:", error.message);
-                    alert("Error updating profile picture: " + error.message);
-                });
-        }
-
-        function loadProfilePicture(userId) {
-            const storageRef = firebase.storage().ref('profilePictures/' + userId);
-
-            storageRef.getDownloadURL()
-                .then((downloadURL) => {
-                    // Update the displayed profile picture on the page
-                    document.getElementById('profilePictureDisplay').src = downloadURL;
-                })
-                .catch((error) => {
-                    // Handle if no profile picture is available
-                    console.error("Error loading profile picture:", error.message);
-
-                    // If profile picture is not available, add a dummy image
-                    document.getElementById('profilePictureDisplay').src = '../static/images/user pro pic.png';
-                });
-        }
-
-        // Function to logout
-        function logout() {
-            firebase.auth().signOut()
-                .then(() => {
-                    // Redirect to the login page after successful logout
-                    window.location.href = "/";
-                })
-                .catch((error) => {
-                    console.error("Error during logout:", error.message);
-                });
-        }
-    </script>
+<!-- Js file with backend operations -->
+<script src="../static/Face Auth/UpdateProfile/up.js"></script>
 </body>
 </html>
+
 
