@@ -63,12 +63,13 @@
         </div>
     </div>
     <!-- Footer section -->
+    <!-- Footer -->
     <footer>
         <!-- Footer content -->
         <div class="row">
             <!-- Logo and about section -->
             <div class="col">
-                <img src="../static/images/logo (2).png" class="footer_logo">
+                <img src="../static/images/logo.png" class="footer_logo">
                 <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
             </div>
             <!-- Contact section -->
@@ -81,11 +82,13 @@
             <div class="col">
                 <h3>Links <div class="bottom_line"><span></span></div></h3>
                 <ul>
-                    <li><a href="/userhome">HOME</a></li>
+                    <li><a href="/userhome">Home</a></li>
                     <li><a href="/aboutu">About</a></li>
-                    <li><a href="/helpuser">SUPPORT</a></li>
+                    <li><a href="/helpuser">Support</a></li>
                 </ul>
             </div>
+            
+            
             <!-- Social icons section -->
             <div class="col">
                 <div id="myid"></div>
@@ -96,11 +99,17 @@
                     <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
                 </div>
             </div>
+
+            <select id="languageSelect" name="language">
+                <option value="en">English</option>
+                <option value="si">සිංහල</option>
+                <option value="ta">தமிழ்</option>
+            </select>
         </div>
         <hr>
         <!-- Copyright -->
-        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
-    </footer> 
+        <p class="copyright" id="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+     </footer>
     <!-- Google Translate script -->
     <script>
         function loadGoogleTranslate() {
