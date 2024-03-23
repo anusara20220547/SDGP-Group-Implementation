@@ -61,17 +61,17 @@ const localStorageUsername = localStorage.getItem('userName');
 
                         // Enable delete option if username matches with local storage username
                         if (localStorageUsername === petitionData.username) {
-
                             const deleteButton = document.createElement('button');
                             signButton.remove();
                             deleteButton.textContent = 'Delete';
                             deleteButton.addEventListener('click', () => {
-                                // Implement deletion logic here
-                                petitionsRef.child(petition.key).remove();
-                                // Remove the petition details container from the UI
-                                petitionDetailsContainer.innerHTML = '';
-                                // Remove the petition from local storage
-                                localStorage.removeItem('clickedPetitionTitle');
+                                // Confirm before deletion
+                                const confirmDelete = confirm("Are you sure you want to delete this petition?");
+                                if (confirmDelete) {
+                                    petitionsRef.child(petition.key).remove();
+                                    petitionDetailsContainer.innerHTML = '';
+                                    localStorage.removeItem('clickedPetitionTitle');
+                                }
                             });
                             petitionDetailsContainer.appendChild(deleteButton);
                         }
