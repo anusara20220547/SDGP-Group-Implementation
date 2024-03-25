@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title -->
+    <title>Voice of Unity</title>
+    <!-- CSS files -->
+    <link rel="stylesheet" href="../static/Chatbot/chatbot.css">
+    <link rel="stylesheet" href="../static/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/footer.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
+    <!-- Google Translate -->
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+</head>
+<body>
+    <!-- Header section -->
+    <header class="header">
+        <a href="../static/images/bloghead.jpg" class="logo">
+            V.O.U 
+            <!-- Menu icon -->
+            <i class='bx bx-menu' id="menu-icon"></i>
+        </a>
+        <div>
+            <!-- Navigation links -->
+            <nav class="navbar">
+                <a href="/userhome">Home</a>
+                <a href="/aboutu">About</a>
+                <a href="/helpuser">Support</a>
+                <a href="/updateprofile">Profile</a>
+            </nav>
+        </div>
+    </header>
+    <!-- Chatbot container -->
+    <div class="chat-container">
+        <h1>VOICE OF UNITY CHATBOT</h1>
+        <!-- Chat box -->
+        <div class="chat-box" id="chat-box"></div>
+        <!-- User input -->
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <!-- Send button -->
+        <button onclick="sendMessage()">Send</button>
+        <br><br>
+    </div>
+
+    <!-- Footer section -->
+    <footer>
+        <!-- Footer content -->
+        <div class="row">
+            <!-- Footer column 1 -->
+            <div class="col">
+                <!-- Footer logo -->
+                <img src="../static/images/logo (2).png" class="footer_logo">
+                <!-- Footer about -->
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
+            </div>
+            <!-- Footer column 2 -->
+            <div class="col">
+                <!-- Contact details -->
+                <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
+                <p class="footer_email">voiceofunityweb@gmail.com</p>
+                <h4>+94 - 715442990</h4>
+            </div>
+            <!-- Footer column 3 -->
+            <div class="col">
+                <!-- Links -->
+                <h3>Links <div class="bottom_line"><span></span></div></h3>
+                <ul>
+                    <li><a href="/userhome">HOME</a></li>
+                    <li><a href="/aboutu">About</a></li>
+                    <li><a href="/helpuser">SUPPORT</a></li>
+                </ul>
+            </div>
+            <!-- Footer column 4 -->
+            <div class="col">
+                <!-- Google Translate -->
+                <div id="myid"></div>
+                <!-- Social icons -->
+                <div class="social_icons">
+                    <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-twitter"></ion-icon>
+                    <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <!-- Horizontal line -->
+        <hr>
+        <!-- Copyright -->
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+    </footer>  
+    <!-- Google Translate script -->
+    <script>
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("myid");
+        }
+    </script>
+    <!-- Ionicons script -->
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <!-- Chatbot script -->
+    <script src="../static/Chatbot/chatbot.js"></script>
+</body>
+</html>

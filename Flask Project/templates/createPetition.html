@@ -1,57 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF -8">
-    <title>Voice of Unity Online Petition System</title>
-    <link rel = "stylesheet" href="../static/Create Petition Form/style.css">
-    <link rel = "stylesheet" href="../static/Create Petition Form/NavigationCSS.css">
-    <link rel = "stylesheet" href="../static/footer.css">
+   
+    <meta charset="UTF-8">
+    <title>Voice of Unity</title>
+    
+    
+    <link rel="stylesheet" href="../static/Create Petition Form/style.css">
+    <link rel="stylesheet" href="../static/Create Petition Form/NavigationCSS.css">
+    <link rel="stylesheet" href="../static/footer.css">
+    
+   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <meta name ="viewport" content = "width=device-width, initial-scale=1.0">
+    
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Include Firebase scripts -->
+    
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    
+    
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script>
     
-    <!-- Include your CSS files -->
+   
+    <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+    
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="NavigationCSS.css">
 </head>
 <body>
-    <header class="header">
-        <a href="../static/images/bloghead.jpg" class="logo">
-            VOICE OF UNITY 
-        <i class='bx bx-menu' id="menu-icon"></i>
-        <div>
+    
+   <!-- Header section -->
+   <header class="header">
+    <img id="logo" src="../static/images/logo.png" alt="Logo">
+    <i class='bx bx-menu' id="menu-icon"></i>
+    <div>
+        <!-- Navigation links -->
         <nav class="navbar">
             <a href="/">Home</a>
-            <a href="/index">About</a>
-            <a href="/recog">Contact</a>
-            <a href="/updateprofile" class="login-btn">Account</a>
+            <a href="/about">About</a>
+            <a href="/help">Help</a>
+            <a href="/loginp" class="login-btn">Log In</a>
         </nav>
-        </div>
-    </header>
+    </div>
+</header>
 
-
-
+    
     <div class="container">
+       
         <form id="petitions" onsubmit="createPetitionAndUploadImage(event)">
-
             <h1>Create Petition form</h1>
 
+            
             <h4>Add main title</h4>
             <input type="text" id="title" placeholder="Title" required>
-            
             <h4>Add sub title</h4>
             <input type="text" id="sub" placeholder="Sub title" required>
-
             <h4>Add description</h4>
             <textarea id="description" placeholder="Type your message here" required></textarea>
-
             <h4>Category</h4>
             <p>Select one:</p>
             <select name="Category-details" id="Category-details">
@@ -62,46 +73,59 @@
                 <option value="Other">Other</option>
             </select>
             <br>    
-            
-            <h4>Media Upload</h4>    
+           
+            <h4>Media Upload</h4>
             <br>
             <input type="file" id="imageInput" accept="image/*">
+            <br><br>
+            
+           
+            <h4>To Enable Donation Functionality</h4>
+            <br>
+            <h4>Account Name</h4>
+            <input type="text" id="aname" placeholder="Account Name" required>
+            <h4>Account No</h4>
+            <input type="text" id="ano" placeholder="Account No" required>
+            <h4>Bank Name</h4>
+            <input type="text" id="bname" placeholder="Bank Name" required>
+            <h4>Branch Name</h4>
+            <input type="text" id="brname" placeholder="Branch Name" required>
+            
+           
             <input type="submit" id="button">
         </form>
     </div>
 
+    
     <footer>
+        
         <div class="row">
+            
             <div class="col">
                 <img src="../static/images/logo (2).png" class="footer_logo">
-                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.
-
-                </p>
+                <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
             </div>
+            
+           
             <div class="col">
                 <h3>Contact Us <div class="bottom_line"><span></span></div></h3>
-                <p>2841 Romines Mill Road</p>
-                <p>Plano</p>
-                <p>Texas, ZIP 75074, United States</p>
                 <p class="footer_email">voiceofunityweb@gmail.com</p>
                 <h4>+94 - 715442990</h4>
             </div>
+            
+            
             <div class="col">
                 <h3>Links <div class="bottom_line"><span></span></div></h3>
                 <ul>
-                    <li><a href="">HOME</a></li>
-                    <li><a href="">LOGIN</a></li>
-                    <li><a href="">REGISTER</a></li>
-                    <li><a href="">SUPPORT</a></li>
+                    <li><a href="/userhome">HOME</a></li>
+                    <li><a href="/aboutu">About</a></li>
+                    <li><a href="/helpuser">SUPPORT</a></li>
                 </ul>
             </div>
+            
+            
             <div class="col">
-                <h3>Newsletter <div class="bottom_line"><span></span></div></h3>
-                <form>
-                    <ion-icon class="icon" name="mail"></ion-icon>
-                    <input type="email" placeholder="Enter your email" required>
-                    <button type="submit"><ion-icon class="icon_right" name="arrow-round-forward"></ion-icon></button>
-                </form>
+                <div id="myid"></div>
                 <div class="social_icons">
                     <ion-icon class="social_icon" name="logo-facebook"></ion-icon>
                     <ion-icon class="social_icon" name="logo-whatsapp"></ion-icon>
@@ -111,147 +135,18 @@
             </div>
         </div>
         <hr>
+       
         <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
-     </footer>
-
+    </footer>
+    
+    
     <script>
-            const firebaseConfig = {
-            apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
-            authDomain: "voc-sdgp.firebaseapp.com",
-            databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
-            projectId: "voc-sdgp",
-            storageBucket: "voc-sdgp.appspot.com",
-            messagingSenderId: "158804183426",
-            appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
-        };
-
-            firebase.initializeApp(firebaseConfig);
-
-            try {
-                firebase.database();
-                firebase.storage();
-                fetchPetitionData(); // Fetch and display images on page load
-            } catch (error) {
-                alert("Error connecting to Firebase database: " + error.message);
-                console.error("Error connecting to Firebase database:", error);
-            }
-        
-
-        function fetchPetitionData() {
-            const petitionsRef = firebase.database().ref('alldata/petitions');
-
-            petitionsRef.on('value', (snapshot) => {
-                const petitions = snapshot.val();
-                // Iterate through the petitions and display the images
-                for (const petitionId in petitions) {
-                    const petition = petitions[petitionId];
-                    displayImage(petition.imageURL);
-                }
-            });
-        }
-
-        function displayImage(imageURL) {
-            const container = document.getElementById("image-container");
-
-            // Create an img element
-            const imgElement = document.createElement("img");
-            imgElement.src = imageURL;
-
-            // Append the img element to the container
-            container.appendChild(imgElement);
-        }
-
-        function uploadImage(mainTitle, file, subTitle) {
-            return new Promise((resolve, reject) => {
-                const sanitizedMainTitle = mainTitle ? sanitizeForStorage(mainTitle) : 'untitled';
-                const sanitizedSubTitle = subTitle ? sanitizeForStorage(subTitle) : 'untitled';
-
-                const fileName = `${sanitizedMainTitle}_${sanitizedSubTitle}.${file.name.split('.').pop()}`;
-                const storageRef = firebase.storage().ref(`petitionImages/${sanitizedMainTitle}/${fileName}`);
-                const uploadTask = storageRef.put(file);
-
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        // Progress tracking if needed
-                    },
-                    (error) => {
-                        reject(error);
-                    },
-                    () => {
-                        // Image uploaded successfully, now get the download URL
-                        storageRef.getDownloadURL()
-                            .then((downloadURL) => {
-                                resolve(downloadURL); // Resolve with the full download URL
-                            })
-                            .catch((urlError) => {
-                                reject(urlError);
-                            });
-                    }
-                );
-            });
-        }
-
-        function createPetitionAndUploadImage(event) {
-    event.preventDefault();
-
-    const username = localStorage.getItem('userName');
-
-    if (!username) {
-        alert("Username not found in local storage. Please log in.");
-        return;
-    }
-
-    const title = document.getElementById("title").value;
-    const sub = document.getElementById("sub").value;
-    const description = document.getElementById("description").value;
-    const category = document.getElementById("Category-details").value;
-    const fileInput = document.getElementById("imageInput");
-
-    if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-
-        uploadImage(title, file, sub)
-            .then((downloadURL) => {
-                saveDownloadLinkToDatabase(downloadURL, title, sub, description, category, username);
-            })
-            .catch((error) => {
-                alert("Error uploading image: " + error.message);
-                console.error("Error uploading image:", error);
-            });
-    } else {
-        alert("Please select an image before submitting the form.");
-    }
-}
-
-function saveDownloadLinkToDatabase(downloadURL, title, sub, description, category, username) {
-    const petitionsRef = firebase.database().ref('alldata/petitions');
-    const newPetitionRef = petitionsRef.push();
-
-    const petitionData = {
-        Sub_title: sub,
-        description: description,
-        main_title: title,
-        category: category,
-        imageURL: downloadURL,
-        signs: 0,
-        username: username, // Add the username to the petition data
-    };
-
-    newPetitionRef.set(petitionData)
-        .then(() => {
-            alert("Petition data and image uploaded successfully!");
-        })
-        .catch((error) => {
-            alert("Error updating petition data: " + error.message);
-            console.error("Error updating petition data:", error);
-        });
-}
-
-
-        function sanitizeForStorage(input) {
-            // Remove characters not allowed in Firebase Storage paths
-            return input.replace(/[.#$[\]/]/g, '-');
+        function loadGoogleTranslate() {
+            new google.translate.TranslateElement("myid")
         }
     </script>
+    
+    
+    <script src="../static/Create Petition Form/connect.js"></script>
 </body>
 </html>
