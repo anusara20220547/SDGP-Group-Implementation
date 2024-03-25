@@ -1,102 +1,164 @@
-window.onload = function () {
-            // Your Firebase configuration
-            const firebaseConfig = {
-            apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
-            authDomain: "voc-sdgp.firebaseapp.com",
-            databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
-            projectId: "voc-sdgp",
-            storageBucket: "voc-sdgp.appspot.com",
-            messagingSenderId: "158804183426",
-            appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
-            };
+// Firebase configuration object
+const firebaseConfig = {
+    apiKey: "AIzaSyCHo3GsutqlcVaSrCT3IgyzG6iRce4-egM",
+    authDomain: "voc-sdgp.firebaseapp.com",
+    databaseURL: "https://voc-sdgp-default-rtdb.firebaseio.com",
+    projectId: "voc-sdgp",
+    storageBucket: "voc-sdgp.appspot.com",
+    messagingSenderId: "158804183426",
+    appId: "1:158804183426:web:a814aabef72fd4dcaaa79b"
+};
 
 
-            // Initialize Firebase
-            firebase.initializeApp(firebaseConfig);
+    // Initialize Firebase with the provided configuration
+    firebase.initializeApp(firebaseConfig);
 
-            // Check if the connection to the database is successful
-            try {
-                firebase.database();
-                firebase.storage(); // Initialize storage
-                alert("Firebase database connection successful!");
-            } catch (error) {
-                alert("Error connecting to Firebase database: " + error.message);
-                console.error("Error connecting to Firebase database:", error);
-            }
-        };
+    try {
+        firebase.database();
+        firebase.storage();
+        fetchPetitionData(); // Fetch and display images on page load
+    } catch (error) {
+        alert("Error connecting to Firebase database: " + error.message);
+        console.error("Error connecting to Firebase database:", error);
+    }
 
-        function createPetition() {
-            // Get values from the form
-            const title = document.getElementById("title").value;
-            const sub = document.getElementById("sub").value;
-            const description = document.getElementById("description").value;
-            const category = document.getElementById("Category-details").value;
-            const fileInput = document.getElementById("file");
+// Function to fetch petition data from Firebase database
+function fetchPetitionData() {
+    const petitionsRef = firebase.database().ref('alldata/petitions');
 
-            // Check if a file is selected
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-
-                // Create a reference to the 'alldata/petitions' node in the database
-                const petitionsRef = firebase.database().ref('alldata/petitions');
-
-                // Push data to the 'alldata/petitions' node and let Firebase generate a unique key
-                const newPetitionRef = petitionsRef.push();
-
-                // Set the data within the unique petition node
-                const petitionData = {
-                    Sub_title: sub,
-                    description: description,
-                    main_title: title,
-                    category: category
-                };
-
-                // Use Promise.all to wait for both image upload and petition data update
-                Promise.all([
-                    uploadImage(newPetitionRef.key, file),
-                    updatePetitionData(newPetitionRef, petitionData)
-                ]).then(() => {
-                    alert("Petition data and image uploaded successfully!");
-                    // You can add any additional logic or redirect the user after successful data upload
-                }).catch((error) => {
-                    alert("Error: " + error.message);
-                    console.error("Error:", error);
-                });
-            } else {
-                alert("Please select an image before submitting the form.");
-            }
+    petitionsRef.on('value', (snapshot) => {
+        const petitions = snapshot.val();
+        // Iterate through the petitions and display the images
+        for (const petitionId in petitions) {
+            const petition = petitions[petitionId];
+            displayImage(petition.imageURL);
         }
+    });
+}
 
-        function uploadImage(petitionKey, file) {
-            return new Promise((resolve, reject) => {
-                const storageRef = firebase.storage().ref('petitionImages/' + petitionKey + '/' + file.name);
-                const uploadTask = storageRef.put(file);
 
-                uploadTask.on('state_changed',
-                    (snapshot) => {
-                        // Progress tracking if needed
-                        // const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        // console.log('Upload is ' + progress + '% done');
-                    },
-                    (error) => {
-                        reject(error);
-                    },
-                    () => {
-                        // Image uploaded successfully
-                        resolve();
-                    }
-                );
-            });
-        }
 
-        function updatePetitionData(newPetitionRef, petitionData) {
-            return new Promise((resolve, reject) => {
-                newPetitionRef.set(petitionData)
-                    .then(() => {
-                        resolve();
+// Function to display an image on the webpage
+function displayImage(imageURL) {
+    const container = document.getElementById("image-container");
+
+    // Create an img element
+    const imgElement = document.createElement("img");
+    imgElement.src = imageURL;
+
+    // Append the img element to the container
+    container.appendChild(imgElement);
+}
+
+
+// Function to upload an image to Firebase storage
+function uploadImage(mainTitle, file, subTitle) {
+    return new Promise((resolve, reject) => {
+        const sanitizedMainTitle = mainTitle ? sanitizeForStorage(mainTitle) : 'untitled';
+        const sanitizedSubTitle = subTitle ? sanitizeForStorage(subTitle) : 'untitled';
+
+        const fileName = ${sanitizedMainTitle}_${sanitizedSubTitle}.${file.name.split('.').pop()};
+        const storageRef = firebase.storage().ref(petitionImages/${sanitizedMainTitle}/${fileName});
+        const uploadTask = storageRef.put(file);
+
+        uploadTask.on('state_changed',
+            (snapshot) => {
+                // Progress tracking if needed
+            },
+            (error) => {
+                reject(error);
+            },
+            () => {
+                // Image uploaded successfully, now get the download URL
+                storageRef.getDownloadURL()
+                    .then((downloadURL) => {
+                        resolve(downloadURL); // Resolve with the full download URL
                     })
-                    .catch((error) => {
-                        reject(error);
+                    .catch((urlError) => {
+                        reject(urlError);
                     });
+            }
+        );
+    });
+}
+
+
+// Function to create a petition and upload associated image
+function createPetitionAndUploadImage(event) {
+    event.preventDefault();
+
+    const username = localStorage.getItem('userName');
+
+    if (!username) {
+        alert("Username not found in local storage. Please log in.");
+        return;
+    }
+
+    // Get form input values
+    const title = document.getElementById("title").value;
+    const sub = document.getElementById("sub").value;
+    const description = document.getElementById("description").value;
+    const category = document.getElementById("Category-details").value;
+    const fileInput = document.getElementById("imageInput");
+    const accountname = document.getElementById("aname").value;
+    const accountno = document.getElementById("ano").value;
+    const bankname = document.getElementById("bname").value;
+    const branchname = document.getElementById("brname").value;
+
+
+    // Upload the image, then save petition data with download URL
+    if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+
+        uploadImage(title, file, sub)
+            .then((downloadURL) => {
+                saveDownloadLinkToDatabase(downloadURL, title, sub, description, category, username, accountname, accountno, bankname, branchname);
+            })
+            .catch((error) => {
+                alert("Error uploading image: " + error.message);
+                console.error("Error uploading image:", error);
             });
+    } else {
+        alert("Please select an image before submitting the form.");
+    }
+}
+
+
+// Function to save petition data and image URL to Firebase database
+function saveDownloadLinkToDatabase(downloadURL, title, sub, description, category, username,accountname,accountno,bankname,branchname) {
+const petitionsRef = firebase.database().ref('alldata/petitions');
+const newPetitionRef = petitionsRef.push();
+
+
+// Data to be saved in the database
+const petitionData = {
+Sub_title: sub,
+description: description,
+main_title: title,
+category: category,
+imageURL: downloadURL,
+signs: 0,
+username: username, 
+accountName : accountname,
+accountNo : accountno,
+branchName : branchname,
+bankName : bankname
+};
+
+
+// Set data in the database
+newPetitionRef.set(petitionData)
+.then(() => {
+    alert("Petition data and image uploaded successfully!");
+})
+.catch((error) => {
+    alert("Error updating petition data: " + error.message);
+    console.error("Error updating petition data:", error);
+});
+}
+
+
+function sanitizeForStorage(input) {
+    // Remove characters not allowed in Firebase Storage paths
+    return input.replace(/[.#$[\]/]/g, '-');
 }

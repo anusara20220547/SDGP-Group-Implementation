@@ -106,3 +106,20 @@ button:hover {
     border-radius: 20px;
     padding: 10px 20px;
 }
+
+.chat-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.message {
+    padding: 8px 12px;
+    margin: 4px;
+    border-radius: 20px;
+}
+
+.suggested-questions {
+    background-color: #d6b9b9;
+   
+}

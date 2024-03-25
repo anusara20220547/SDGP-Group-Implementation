@@ -17,18 +17,19 @@
     <title>Voice of Unity</title>
   </head>
   <body>
+    <!-- Header -->
     <header class="header">
-        <a href="#" class="logo">V.O.U</a>
-        <i class='bx bx-menu' id="menu-icon"></i>
-        <div>
-        <nav class="navbar">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/help">Help</a>
-            <a href="/loginp" class="login-btn">Log In</a>
-        </nav>
-        </div>
-    </header>
+      <div class="logo">
+          <img src="../static/images/logo.png" alt="Logo">
+      </div>
+      <div id="menu-icon">☰</div>
+      <nav class="navbar">
+          <a href="/">Home</a>
+          <a href="/about">About</a>
+          <a href="/help">Help</a>
+          <a href="/loginp" class="login-btn">Log In</a>
+      </nav>
+  </header>
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
@@ -42,13 +43,16 @@
               <i class="fas fa-lock"></i>
               <input type="password" id="password" placeholder="Password" required>
             </div>
+            <a href="#" id="forgot-password-link">Forgot Password?</a>
             <button type="submit" class="btn">Login</button>
             <p class="social-text">Or Sign in with Google</p>
             <div class="social-media">
-                <button type="submit" id="ayyo" class="social-icon">
-                    <i class="fab fa-google"></i>
-                </button>
-            </div>
+              <button type="submit" id="gs" class="social-icon">
+                  <i class="fab fa-google"></i>
+              </button>
+          </div>
+            
+            
           </form>
           <form action="" class="sign-up-form">
             <h2 class="title">Sign up</h2>
@@ -65,7 +69,13 @@
               <input type="password" id="password1" placeholder="Password" required>
             </div>
             <button type="submit" class="btn" value="Sign up">Sign Up</button>
-            
+            <p class="social-text">Or Sign in with Google</p>
+            <div class="social-media">
+              <button type="submit" id="ga" class="social-icon">
+                  <i class="fab fa-google"></i>
+              </button>
+          </div>
+
           </form>
         </div>
       </div>
@@ -105,7 +115,7 @@
         
       <div class="row">
           <div class="col">
-              <img src="../static/images/logo (2).png" class="footer_logo">
+              <img src="../static/images/logo.png" class="footer_logo">
               <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.
 
               </p>
@@ -162,8 +172,8 @@
     const auth = getAuth();
     const provider = new GoogleAuthProvider()
   
-    const signInButton = document.getElementById("ayyo");
-    
+    const signInButton = document.getElementById("ga");
+    const signUpButton = document.getElementById("gs");
   
     const userSignIn = async () => {
     try {
@@ -176,7 +186,25 @@
 
         // Proceed to save user information in the database
         saveGoogleSignInDetails(user.displayName, user.email);
-        window.location.href = "/updateprofile";
+        window.location.href = "/recog";
+
+    } catch (error) {
+        console.error("Error with Google Sign-In:", error);
+    }
+};
+
+const userSignUp = async () => {
+    try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        // Save user information in local storage
+        localStorage.setItem('userName', user.displayName);
+        localStorage.setItem('userGmail', user.email);
+
+        // Proceed to save user information in the database
+        saveGoogleSignInDetails(user.displayName, user.email);
+        window.location.href = "/index";
 
     } catch (error) {
         console.error("Error with Google Sign-In:", error);
@@ -204,19 +232,19 @@ contactFormDB.orderByChild("gmail").equalTo(gmail).once("value", snapshot => {
 };
 
     signInButton.addEventListener('click', userSignIn);
-  
+    signUpButton.addEventListener('click', userSignUp);
+
   </script>
+  
   <script>
-
-    function loadGoogleTranslate()
-
-    {
-
-        new google.translate.TranslateElement("myid")
-
+    // Google Translate function
+    function loadGoogleTranslate() {
+        new google.translate.TranslateElement({
+        includedLanguages: 'si,en,ta', // Languages to include (Sinhala, English, Tamil)
+    }, 'myid'); // 'myid' is the ID of the element where you want to place the translation widget
     }
-
 </script>
+
  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 
    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js"></script>
@@ -224,7 +252,6 @@ contactFormDB.orderByChild("gmail").equalTo(gmail).once("value", snapshot => {
    <script src="https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
    <script src="../static/Login page/mail.js"></script> 
-   
+   <script src="../static/Navbar.js"></script> 
   </body>
 </html>
-

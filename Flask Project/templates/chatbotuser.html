@@ -19,22 +19,18 @@
     <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
 </head>
 <body>
-    <!-- Header section -->
+    <!-- Header -->
     <header class="header">
-        <a href="../static/images/bloghead.jpg" class="logo">
-            V.O.U 
-            <!-- Menu icon -->
-            <i class='bx bx-menu' id="menu-icon"></i>
-        </a>
-        <div>
-            <!-- Navigation links -->
-            <nav class="navbar">
-                <a href="/userhome">Home</a>
-                <a href="/aboutu">About</a>
-                <a href="/helpuser">Support</a>
-                <a href="/updateprofile">Profile</a>
-            </nav>
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo">
         </div>
+        <div id="menu-icon">☰</div>
+        <nav class="navbar">
+            <a href="/userhome">Home</a>
+            <a href="/aboutu">About</a>
+            <a href="/helpuser">Support</a>
+            <a href="/updateprofile">Profile</a>
+        </nav>
     </header>
     <!-- Chatbot container -->
     <div class="chat-container">
@@ -55,7 +51,7 @@
             <!-- Footer column 1 -->
             <div class="col">
                 <!-- Footer logo -->
-                <img src="../static/images/logo (2).png" class="footer_logo">
+                <img src="../static/images/logo.png" class="footer_logo">
                 <!-- Footer about -->
                 <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
             </div>
@@ -96,13 +92,17 @@
     </footer>  
     <!-- Google Translate script -->
     <script>
+        // Google Translate function
         function loadGoogleTranslate() {
-            new google.translate.TranslateElement("myid");
+            new google.translate.TranslateElement({
+            includedLanguages: 'si,en,ta', // Languages to include (Sinhala, English, Tamil)
+        }, 'myid'); // 'myid' is the ID of the element where you want to place the translation widget
         }
     </script>
     <!-- Ionicons script -->
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <!-- Chatbot script -->
+    <script src="../static/Navbar.js"></script>
     <script src="../static/Chatbot/chatbot.js"></script>
 </body>
 </html>

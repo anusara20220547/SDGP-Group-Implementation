@@ -12,24 +12,21 @@
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script> <!-- Ionicons ES module -->
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script> <!-- Ionicons script for older browsers -->
     <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> <!-- Google Translate script -->
-    <script src="../static/Navbar.js"></script> <!-- Script for navbar functionality -->
+    
 </head>
 <body>
-    <!-- Header section -->
+    <!-- Header -->
     <header class="header">
-        <!-- Logo and navigation -->
-        <a href="../static/images/bloghead.jpg" class="logo">
-            V.O.U 
-            <i class='bx bx-menu' id="menu-icon"></i>
-        </a>
-        <div>
-            <nav class="navbar">
-                <a href="/userhome">Home</a>
-                <a href="/aboutu">About</a>
-                <a href="/helpuser">Support</a>
-                <a href="/updateprofile">Profile</a>
-            </nav>
+        <div class="logo">
+            <img src="../static/images/logo.png" alt="Logo">
         </div>
+        <div id="menu-icon">☰</div>
+        <nav class="navbar">
+            <a href="/userhome">Home</a>
+            <a href="/aboutu">About</a>
+            <a href="/helpuser">Support</a>
+            <a href="/updateprofile">Profile</a>
+        </nav>
     </header>
     <!-- User profile settings -->
     <div class="box box1">
@@ -50,10 +47,6 @@
                 <input type="text" id="newUsername" required>
                 <button onclick="validateAndUpdateUsername()">Update Username</button>
 
-                <label for="newPassword">New Password:</label>
-                <input type="password" id="newPassword" required>
-                <button onclick="updatePassword()">Update Password</button>
-                <br><br>
 
                 <input type="file" id="profilePictureInput" accept="image/*">
                 <button onclick="validateAndUpdateProfilePicture()">Update Profile Picture</button>
@@ -69,7 +62,7 @@
         <div class="row">
             <!-- Logo and about section -->
             <div class="col">
-                <img src="../static/images/logo (2).png" class="footer_logo">
+                <img src="../static/images/logo.png" class="footer_logo">
                 <p class="footer_about">Join us in making a difference! Sign up for updates and stay connected.</p>
             </div>
             <!-- Contact section -->
@@ -102,10 +95,12 @@
         <!-- Copyright -->
         <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
     </footer> 
-    <!-- Google Translate script -->
     <script>
+        // Google Translate function
         function loadGoogleTranslate() {
-            new google.translate.TranslateElement("myid")
+            new google.translate.TranslateElement({
+            includedLanguages: 'si,en,ta', // Languages to include (Sinhala, English, Tamil)
+        }, 'myid'); // 'myid' is the ID of the element where you want to place the translation widget
         }
     </script>
 
@@ -117,7 +112,6 @@
 
 <!-- Js file with backend operations -->
 <script src="../static/Face Auth/UpdateProfile/up.js"></script>
+<script src="../static/Navbar.js"></script>
 </body>
 </html>
-
-
