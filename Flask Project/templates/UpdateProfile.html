@@ -12,11 +12,10 @@
     <script type="module" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.esm.js"></script> <!-- Ionicons ES module -->
     <script nomodule="" src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons/ionicons.js"></script> <!-- Ionicons script for older browsers -->
     <script src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> <!-- Google Translate script -->
-    <script src="../static/Navbar.js"></script> <!-- Script for navbar functionality -->
+    
 </head>
 <body>
-    <!-- Header section -->
-    
+    <!-- Header -->
     <header class="header">
         <div class="logo">
             <img src="../static/images/logo.png" alt="Logo">
@@ -48,10 +47,6 @@
                 <input type="text" id="newUsername" required>
                 <button onclick="validateAndUpdateUsername()">Update Username</button>
 
-                <label for="newPassword">New Password:</label>
-                <input type="password" id="newPassword" required>
-                <button onclick="updatePassword()">Update Password</button>
-                <br><br>
 
                 <input type="file" id="profilePictureInput" accept="image/*">
                 <button onclick="validateAndUpdateProfilePicture()">Update Profile Picture</button>
@@ -62,7 +57,6 @@
         </div>
     </div>
     <!-- Footer section -->
-    <!-- Footer -->
     <footer>
         <!-- Footer content -->
         <div class="row">
@@ -81,13 +75,11 @@
             <div class="col">
                 <h3>Links <div class="bottom_line"><span></span></div></h3>
                 <ul>
-                    <li><a href="/userhome">Home</a></li>
+                    <li><a href="/userhome">HOME</a></li>
                     <li><a href="/aboutu">About</a></li>
-                    <li><a href="/helpuser">Support</a></li>
+                    <li><a href="/helpuser">SUPPORT</a></li>
                 </ul>
             </div>
-            
-            
             <!-- Social icons section -->
             <div class="col">
                 <div id="myid"></div>
@@ -98,21 +90,17 @@
                     <ion-icon class="social_icon" name="logo-instagram"></ion-icon>
                 </div>
             </div>
-
-            <select id="languageSelect" name="language">
-                <option value="en">English</option>
-                <option value="si">සිංහල</option>
-                <option value="ta">தமிழ்</option>
-            </select>
         </div>
         <hr>
         <!-- Copyright -->
-        <p class="copyright" id="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
-     </footer>
-    <!-- Google Translate script -->
+        <p class="copyright">Voice of Unity Ⓒ 2024 - All Rights Reserved</p>
+    </footer> 
     <script>
+        // Google Translate function
         function loadGoogleTranslate() {
-            new google.translate.TranslateElement("myid")
+            new google.translate.TranslateElement({
+            includedLanguages: 'si,en,ta', // Languages to include (Sinhala, English, Tamil)
+        }, 'myid'); // 'myid' is the ID of the element where you want to place the translation widget
         }
     </script>
 
@@ -124,7 +112,6 @@
 
 <!-- Js file with backend operations -->
 <script src="../static/Face Auth/UpdateProfile/up.js"></script>
+<script src="../static/Navbar.js"></script>
 </body>
 </html>
-
-
