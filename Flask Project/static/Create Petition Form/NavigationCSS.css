@@ -1,27 +1,32 @@
+/* Global styles */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif; /* Apply Poppins font to all elements */
 }
 
+
+
+/* Body styles */
 body {
   min-height: 100vh;
-  background: url("images/Background.png") no-repeat;
+  background-color: #08071d; /* Set background color */
   background-size: cover;
   background-position: center;
   margin: 0;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
+/* Header styles */
 header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: 20px 4%;
+  padding: 20px 4%; /* Adjust header padding */
   background: rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: space-between;
@@ -44,54 +49,107 @@ header::before {
     rgba(255, 255, 255, 0.4),
     transparent
   );
-  transition: 0.5s;
+  transition: 0.5s; /* Smooth transition for header gradient */
 }
 
 header:hover::before {
-  left: 100%;
+  left: 100%; /* Slide in gradient on hover */
 }
 
+/* Logo styles */
 .logo {
-  color: #fff;
+  color: #fff; /* Set logo color */
   font-size: 25px;
   text-decoration: none;
   font-weight: 600;
-  cursor: default;
+  cursor: default; /* Set cursor to default */
 }
 
+/* Navigation bar styles */
 .navbar {
   display: flex;
 }
 
-
+#logo{
+  width: 100px;
+  margin-left: -10px;
+}
 
 .navbar a {
-  color: #fff;
+  color: #fff; /* Set link color */
   font-size: 18px;
   text-decoration: none;
-  margin-left: 35px;
-  transition: 0.3s;
+  margin-left: 35px; /* Adjust spacing between links */
+  transition: 0.3s; /* Smooth transition for link hover effect */
+}
+
+/* Small logo styles */
+.logoc {
+  font-size: 4px;
 }
 
 .navbar a:hover {
-  color: #f00;
+  color: #f00; /* Change link color on hover */
 }
 
+/* Menu icon styles */
 #menu-icon {
   font-size: 36px;
   color: #fff;
-  display: none;
+  display: none; /* Hide menu icon by default */
 }
 
+/* Scrollbar styles */
 body::-webkit-scrollbar {
-  width: 1em;
+  width: 1em; /* Set scrollbar width */
 }
 
 body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3); /* Apply shadow to scrollbar track */
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: rgb(76, 50, 118);
-  outline: 1px solid rgb(11, 2, 29);
+  background-color: rgb(76, 50, 118); /* Set scrollbar thumb color */
+  outline: 1px solid rgb(11, 2, 29); /* Add outline to scrollbar thumb */
+}
+
+.logo img{
+  margin-top: 0px;
+  font-size: 1.5rem;
+  width: 130px;
+  height: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  header {
+    padding: 15px 4%; /* Adjust header padding for smaller screens */
+  }
+  
+  .navbar {
+    display: none; /* Hide navbar links by default on smaller screens */
+    flex-direction: column; /* Change flex direction to column for smaller screens */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: rgba(232, 222, 222, 0.1);
+    padding: 10px 0;
+    text-align: center;
+  }
+  
+  .navbar.active {
+    display: flex; /* Display navbar links when active */
+  }
+  
+  .navbar a {
+    margin: 10px 0; /* Adjust spacing between links */
+  }
+  
+  #menu-icon {
+    display: block; /* Display menu icon on smaller screens */
+  }
+
+  .container {
+    padding-top: 160px; /* Adjust the value based on the height of your navbar */
+  }
 }
