@@ -1,14 +1,22 @@
+// Selecting the sign-in button element
 const sign_in_btn = document.querySelector("#sign-in-btn");
+
+// Selecting the sign-up button element
 const sign_up_btn = document.querySelector("#sign-up-btn");
+
+// Selecting the container element
 const container = document.querySelector(".container");
 
+// Adding event listener to the sign-up button to switch to sign-up mode
 sign_up_btn.addEventListener("click", () => {
   container.classList.add("sign-up-mode");
 });
 
+// Adding event listener to the sign-in button to switch to sign-in mode
 sign_in_btn.addEventListener("click", () => {
   container.classList.remove("sign-up-mode");
 });
+
 
 
 window.onload = function () {
@@ -37,7 +45,7 @@ window.onload = function () {
       firebase.auth().signInWithEmailAndPassword(gmail, password)
           .then((userCredential) => {
               const user = userCredential.user;
-              alert("Login successful!");
+              alert("Login credentials are correct. Please show your face for identification.");
               
               // Redirect to the main page
               window.location.href = "/recog"; 
@@ -81,7 +89,6 @@ window.onload = function () {
             // Save user information in local storage
             localStorage.setItem('userName', name);
             localStorage.setItem('userGmail', gmail);
-            localStorage.setItem('userPassword', password);
             
             // Proceed to save user information in the database
             saveMessages(name, gmail, password);
@@ -91,24 +98,23 @@ window.onload = function () {
     });
   };
 
-  const saveMessages = (name, gmail, password) => {
+  const saveMessages = (name, gmail) => {
     const auth = firebase.auth();
     const contactFormDB = firebase.database().ref('alldata/authentication');
   
-    auth.createUserWithEmailAndPassword(gmail, password)
+    auth.createUserWithEmailAndPassword(gmail)
       .then((userCredential) => {
         const user = userCredential.user;
         const newauthenticationRef = contactFormDB.child(user.uid);
   
-        // Save additional information including the user's name and password
+        // Save additional information including the user's name
         newauthenticationRef.set({
           name: name,
           gmail: gmail,
-          password: password, // Add the user's password to the database
-          signcount: 0
+          signcount: 0 
         }).then(() => {
-          alert("Registration successful! Redirecting to the main page.");
-          window.location.href = "/index"; // Navigate to the home page
+          alert("Registration credentials saved successfully.Please register your face.");
+          window.location.href = "/index"; 
           document.getElementById("authentication").reset();
         }).catch((error) => {
           console.error("Error uploading authentication data:", error);
@@ -119,5 +125,27 @@ window.onload = function () {
         console.error("Error creating user:", error);
       });
   };
+
 }
 
+
+// Function to handle password reset
+const handlePasswordReset = (event) => {
+  event.preventDefault();
+  const email = document.getElementById("gmail").value;
+
+  firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      alert("Password reset email sent! Please check your email.");
+    })
+    .catch((error) => {
+      console.error("Error sending password reset email:", error);
+      alert("Failed to send password reset email. Please try again.");
+    });
+};
+
+// Add event listener to "Forgot Password" link
+const forgotPasswordLink = document.getElementById("forgot-password-link");
+if (forgotPasswordLink) {
+  forgotPasswordLink.addEventListener("click", handlePasswordReset);
+}
